@@ -3,7 +3,7 @@
 /**
  * Plugin init hook
  */
-add_action('init', 'extensoes_da_nova_form_init', 10);
+//add_action('init', 'extensoes_da_nova_init', 10);
 
 /**
  * Admin page
@@ -33,3 +33,6 @@ add_action('wp_footer', 'extensoes_da_nova_footer');
 //Register Menus
 add_action('init', 'register_my_menus');
 add_filter('nav_menu_link_attributes', 'add_specific_menu_location_atts', 10, 3);
+
+// Adds ACF field before the_content
+add_filter('the_content', 'add_acf_before_the_content');

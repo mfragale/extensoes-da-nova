@@ -13,6 +13,20 @@ function extensoes_da_nova_js()
 		'1.1',
 		true
 	);
+
+	wp_register_script(
+		'fontawesome',
+		'https://kit.fontawesome.com/edc432ff9b.js',
+		array(),
+		null
+	);
+
+	wp_register_script(
+		'bootstrap',
+		'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.1/js/bootstrap.min.js',
+		array('jquery'),
+		true
+	);
 }
 
 

@@ -1,6 +1,8 @@
 <?php
 
-
+/*
+ * WP CUSTOMIZER SETTINGS
+ */
 function extensoes_da_nova_customizer_settings($wp_customize)
 {
 
@@ -55,15 +57,15 @@ function extensoes_da_nova_customizer_settings($wp_customize)
 
 
     // add a setting for the site navbar
-    $wp_customize->add_setting('your_navbar_color');
+    $wp_customize->add_setting('extensoes_da_nova_navbar_color');
     // Add a control to choose navbar color
     $wp_customize->add_control(
-        'your_navbar_color',
+        'extensoes_da_nova_navbar_color',
         array(
             'type' => 'select',
             'label' => 'Navbar color',
             'section' => 'extensoes_da_nova_header',
-            'settings' => 'your_navbar_color',
+            'settings' => 'extensoes_da_nova_navbar_color',
             'choices' => array(
                 'dark' => __('Dark'),
                 'light' => __('Light'),
@@ -74,15 +76,15 @@ function extensoes_da_nova_customizer_settings($wp_customize)
 
 
     // add a setting for the site navbar
-    $wp_customize->add_setting('your_navbar_alignment');
+    $wp_customize->add_setting('extensoes_da_nova_navbar_alignment');
     // Add a control to choose navbar alignment
     $wp_customize->add_control(
-        'your_navbar_alignment',
+        'extensoes_da_nova_navbar_alignment',
         array(
             'type' => 'select',
             'label' => 'Navbar alignment',
             'section' => 'extensoes_da_nova_header',
-            'settings' => 'your_navbar_alignment',
+            'settings' => 'extensoes_da_nova_navbar_alignment',
             'choices' => array(
                 'center' => __('Center'),
                 'left' => __('Left'),
@@ -92,15 +94,15 @@ function extensoes_da_nova_customizer_settings($wp_customize)
     );
 
     // add a setting for the site navbar
-    $wp_customize->add_setting('your_navbar_container');
+    $wp_customize->add_setting('extensoes_da_nova_navbar_container');
     // Add a control to choose navbar container
     $wp_customize->add_control(
-        'your_navbar_container',
+        'extensoes_da_nova_navbar_container',
         array(
             'type' => 'checkbox',
             'label' => 'Add container',
             'section' => 'extensoes_da_nova_header',
-            'settings' => 'your_navbar_container',
+            'settings' => 'extensoes_da_nova_navbar_container',
         )
     );
 
@@ -113,27 +115,27 @@ function extensoes_da_nova_customizer_settings($wp_customize)
         'priority' => 120,
     ));
     // add a setting for the site footer
-    $wp_customize->add_setting('your_footer_visibility');
+    $wp_customize->add_setting('extensoes_da_nova_footer_visibility');
     // Add a control to upload the logo
     $wp_customize->add_control(
-        'your_footer_visibility',
+        'extensoes_da_nova_footer_visibility',
         array(
             'type' => 'checkbox',
             'label' => 'Hide Footer',
             'section' => 'extensoes_da_nova_footer',
-            'settings' => 'your_footer_visibility',
+            'settings' => 'extensoes_da_nova_footer_visibility',
         )
     );
 
     // add a setting for the site footer
-    $wp_customize->add_setting('your_footer_info');
+    $wp_customize->add_setting('extensoes_da_nova_footer_info');
     // Add a control
     $wp_customize->add_control(
-        'your_footer_info',
+        'extensoes_da_nova_footer_info',
         array(
             'label' => 'Footer info',
             'section' => 'extensoes_da_nova_footer',
-            'settings' => 'your_footer_info',
+            'settings' => 'extensoes_da_nova_footer_info',
         )
     );
 }
@@ -162,7 +164,9 @@ function register_my_menus()
     );
 }
 
-
+/*
+ * Adds custom attributes to menu items
+ */
 function add_specific_menu_location_atts($atts, $item, $args)
 {
     // check if the item is in the primary menu
@@ -185,11 +189,15 @@ function add_specific_menu_location_atts($atts, $item, $args)
 
 
 
-
+/*
+ * Adds header to theme
+ */
 function extensoes_da_nova_header($atts)
 {
     // Enqueue JS when this shortcode loaded.
     wp_enqueue_script('extensoesdanova-js');
+    wp_enqueue_script('fontawesome');
+    wp_enqueue_script('bootstrap');
 
     // Enqueue CSS when this shortcode loaded.
     wp_enqueue_style('extensoesdanova-syles');
@@ -200,17 +208,53 @@ function extensoes_da_nova_header($atts)
     print ob_get_clean();
 }
 
-
+/*
+ * Adds footer to theme – Presumes the use of the function above on CSS and JS
+ */
 function extensoes_da_nova_footer()
 {
-    // Enqueue JS when this shortcode loaded.
-    wp_enqueue_script('extensoesdanova-js');
-
-    // Enqueue CSS when this shortcode loaded.
-    wp_enqueue_style('extensoesdanova-syles');
-
     // Outputs the HTML
     ob_start();
     include 'parts/extensoes-da-nova-footer.php';
     print ob_get_clean();
+}
+
+
+
+
+/**
+ * Check if menu item has submenu items - https://gist.github.com/bolante93/a9a15688ed0e7e746a93da712ed54241
+ */
+
+function has_sub_menu(string $menu_location, int $id)
+{
+    //Get proper menu
+    $menuLocations = get_nav_menu_locations();
+    $menuID = $menuLocations[$menu_location];
+    $menu_items = wp_get_nav_menu_items($menuID);
+
+    //Go through and see if this is a parent
+    foreach ($menu_items as $menu_item) {
+        if ((int)$menu_item->menu_item_parent === $id) {
+            return true;
+        }
+    }
+    return false;
+}
+
+
+/*
+ * Adds ACF field before the_content
+ */
+function add_acf_before_the_content($content)
+{
+
+    // check for plugin using plugin name
+    if (is_plugin_active('advanced-custom-fields-pro/acf.php')) {
+        if (get_field('campo_extra')) :
+            $custom_content = the_field('campo_extra');
+        endif;
+    }
+    $custom_content .= $content;
+    return $custom_content;
 }

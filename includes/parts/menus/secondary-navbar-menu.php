@@ -9,6 +9,7 @@
 // https://wordpress.stackexchange.com/questions/228947/get-css-class-of-menu-item-in-custom-menu-structure
 // https://stackoverflow.com/questions/10019493/adding-class-current-page-item
 
+global $post;
 $menu_name = 'secondary_navbar';
 $locations = get_nav_menu_locations();
 $menu = wp_get_nav_menu_object($locations[$menu_name]);
