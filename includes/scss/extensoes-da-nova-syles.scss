@@ -1,535 +1,177 @@
-// @import "../../../../themes/Nova-Theme/scss/custom-variables";
-@import "../gulp/node_modules/bootstrap/scss/bootstrap";
+@import "custom-variables";
+@import "wppb-forms";
+
+// body { background-color: aquamarine; }
 
 /* -------------------------------------------------------------------------- */
 
-/*	HEADER
+/*	PLAY
 /* -------------------------------------------------------------------------- */
-#header {
-    .navbar {
-        padding-top: 0;
-        padding-bottom: 0;
-        //box-shadow: 0 0px 0px 1px $gray-300;
-        backdrop-filter: blur(8px);
-        --bs-bg-opacity: 0.9;
-        min-height: 54px;
-        flex-direction: column;
 
-        //LOGO
-        .navbar-brand {
-            line-height: 0;
-            margin-right: 0;
-
-            @include media-breakpoint-up(md) {
-                // width: 60px;
-            }
-
-            img {
-                max-width: 100%;
-                height: auto;
-                // width: auto;
-                // max-height: 100%;
-
-                // @include media-breakpoint-up(md) {
-                // 	width: 60px;
-                // }
-            }
-        }
-
-        //MENU
-        ul.navbar-nav {
-            max-width: 850px;
-
-            li.nav-item {
-                position: relative;
-
-                a.nav-link {
-                    line-height: 1rem;
-                    text-align: center;
-                    //color: $gray-700;
-                    padding: 1.2rem 1rem;
-                    font-size: 0.8rem;
-                    line-height: 1rem;
-
-                    @include media-breakpoint-up(md) {
-                        padding: 1.2rem 2rem;
-                        font-size: 1rem;
-                    }
-
-                    .active_highlight {
-                        display: inline-block;
-                    }
-
-                    svg {
-                        margin-right: 5px;
-
-                        // path {
-                        // 	fill: $gray-400;
-                        // }
-
-                        @include media-breakpoint-down(sm) {
-                            display: none;
-                        }
-                    }
-
-                    &:hover {
-                        //color: #000;
-
-                        svg {
-                            path {
-                                //fill: $gray-500;
-                                transition: all 0.1s ease-in-out;
-                            }
-                        }
-                    }
-                }
-
-                &.active {
-                    a.nav-link {
-                        color: $primary;
-                        padding: 0.4rem 0rem;
-
-                        @include media-breakpoint-up(sm) {
-                            padding: 0.4rem 1rem;
-                        }
-
-                        .active_highlight {
-                            background-color: #fff;
-                            border-radius: 100px;
-                            box-shadow: 0px 0px 20px -5px transparentize($primary, 0.7);
-
-                            padding: 0.8rem 1rem;
-                        }
-                    }
-                }
-
-                .dropdown-menu {
-                    backdrop-filter: blur(8px);
-                    --bs-bg-opacity: 0.9;
-                    border: none;
-
-                    .dropdown-item {
-                        padding: 0;
-
-                        a {
-                            display: block;
-                            padding: 0.45rem 1rem;
-                            text-decoration: none;
-                            font-size: 0.8em;
-                        }
-                    }
-                }
-            }
-        }
-
-        //FULL SCREEN MENU TOGGLE BUTTON
-        .hamburger {
-            padding: 0.7rem 0;
-            width: 40px;
-
-            @include media-breakpoint-up(md) {
-                width: 60px;
-            }
-
-            .line {
-                height: 1px;
-                margin: 0 0 0 auto;
-                display: block;
-                transition: all 0.3s ease-in-out;
-
-                &:nth-child(1) {
-                    width: 25px;
-                }
-                &:nth-child(2) {
-                    width: 25px;
-                    margin-top: 6px;
-                }
-            }
-
-            &:hover {
-                cursor: pointer;
-
-                // .line {
-                // 	background-color: #000;
-                // }
-            }
-
-            &.is-active {
-                .line:nth-child(1) {
-                    width: 20px;
-                    transform: translateX(-1px) rotate(45deg) translateY(4px);
-                }
-
-                .line:nth-child(2) {
-                    width: 20px;
-                    transform: translateX(0) rotate(-45deg) translateY(-6px);
-                }
-            }
-        }
-
-        // ONLY COLORS
-        &.navbar-light {
-            .container-fluid:nth-child(2) {
-                border-top: 1px solid $gray-200;
-            }
-
-            ul.navbar-nav {
-                li.nav-item {
-                    a.nav-link {
-                        color: $gray-700;
-
-                        svg {
-                            path {
-                                fill: $gray-400;
-                            }
-                        }
-
-                        &:hover {
-                            color: #000;
-
-                            svg {
-                                path {
-                                    fill: $gray-500;
-                                }
-                            }
-                        }
-                    }
-
-                    &.active {
-                        a.nav-link {
-                            color: $primary;
-
-                            .active_highlight {
-                                background-color: #fff;
-                                box-shadow: 0px 0px 20px -5px transparentize($primary, 0.7);
-                            }
-                        }
-                    }
-
-                    .dropdown-menu {
-                        background-color: $gray-100;
-
-                        .dropdown-item {
-                            a {
-                                color: $gray-700;
-                            }
-                        }
-                    }
-                }
-            }
-            .hamburger {
-                .line {
-                    background-color: $gray-700;
-                }
-
-                &:hover {
-                    .line {
-                        background-color: #000;
-                    }
-                }
-            }
-            .secondary-navbar {
-                ul {
-                    li {
-                        a {
-                            color: $gray-700;
-
-                            svg {
-                                path {
-                                    fill: $gray-400;
-                                }
-                            }
-
-                            &:hover {
-                                color: #000;
-
-                                svg {
-                                    path {
-                                        fill: $gray-500;
-                                    }
-                                }
-                            }
-
-                            &.active {
-                                background-color: #fff;
-                                color: $primary;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        &.navbar-dark {
-            .container-fluid:nth-child(2) {
-                border-top: 1px solid $gray-800;
-            }
-
-            ul.navbar-nav {
-                li.nav-item {
-                    a.nav-link {
-                        color: $gray-300;
-
-                        svg {
-                            path {
-                                fill: $gray-600;
-                            }
-                        }
-
-                        &:hover {
-                            color: #fff;
-
-                            svg {
-                                path {
-                                    fill: $gray-400;
-                                }
-                            }
-                        }
-                    }
-
-                    &.active {
-                        a.nav-link {
-                            color: $primary;
-
-                            .active_highlight {
-                                background-color: #1d1d1d;
-                                box-shadow: 0px 0px 20px -5px transparentize($primary, 0.7);
-                            }
-                        }
-                    }
-
-                    .dropdown-menu {
-                        background-color: $gray-700;
-
-                        .dropdown-item {
-                            a {
-                                color: $gray-300;
-                            }
-                        }
-                    }
-                }
-            }
-            .hamburger {
-                .line {
-                    background-color: $gray-300;
-                }
-
-                &:hover {
-                    .line {
-                        background-color: #fff;
-                    }
-                }
-            }
-            .secondary-navbar {
-                ul {
-                    li {
-                        a {
-                            color: $gray-300;
-
-                            svg {
-                                path {
-                                    fill: $gray-600;
-                                }
-                            }
-
-                            &:hover {
-                                color: #fff;
-
-                                svg {
-                                    path {
-                                        fill: $gray-400;
-                                    }
-                                }
-                            }
-
-                            &.active {
-                                background-color: #000;
-                                color: $primary;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    .secondary-navbar {
-        width: 100%;
-
-        ul {
-            li {
-                a {
-                    font-size: 0.8em;
-                    border-radius: 0;
-                    border: none;
-
-                    svg {
-                        margin-right: 5px;
-
-                        @include media-breakpoint-down(sm) {
-                            display: none;
-                        }
-                    }
-                }
-                @include media-breakpoint-down(sm) {
-                    a {
-                        padding: 0.5rem;
-                    }
-                }
-            }
-        }
-    }
-
-    // FULL SCREEN MENU
-    #fullscreenmenu {
-        display: block;
-        padding: 90px 30px 50px;
-        position: fixed;
-        top: 0;
-        width: 100vw;
-        right: 0;
-        height: 100vh;
-        z-index: 1020;
-        background: $gray-900;
-        overflow-y: auto;
-        transform: translateY(-50px);
-        opacity: 0;
-        pointer-events: none;
-        transition: all 0.2s ease-in-out;
-
-        &.is-active {
-            transform: translateY(0px);
-            opacity: 1;
-            pointer-events: visible;
-        }
-
-        ul.main-nav {
-            list-style: none;
-            padding: 0;
-            margin: 0 auto;
-            display: block;
-            max-width: 320px;
-
-            @include media-breakpoint-up(sm) {
-                max-width: 420px;
-            }
-
-            > li {
-                border-bottom: solid 1px #333333;
-
-                > a {
-                    display: block;
-                    color: $gray-300;
-                    text-decoration: none;
-                    padding: 0.8rem 0 0.6rem;
-                    font-size: 1rem;
-                    line-height: 1;
-
-                    svg:first-child {
-                        margin-right: 10px;
-                        width: 15px;
-
-                        // path {
-                        // 	fill: $gray-400;
-                        // }
-
-                        @include media-breakpoint-down(sm) {
-                            display: none;
-                        }
-                    }
-
-                    @include media-breakpoint-up(sm) {
-                        font-size: 1.3rem;
-                        padding: 1.2rem 2rem;
-                    }
-
-                    &:hover {
-                        color: $gray-100;
-                    }
-
-                    // If has child > icon
-                    .fa-plus {
-                        transition: all 200ms;
-                        color: $gray-600;
-                    }
-                    &[aria-expanded="true"] {
-                        .fa-plus {
-                            transform: rotate(45deg);
-                        }
-                    }
-                }
-
-                &.active {
-                    a {
-                        color: $primary;
-                    }
-                }
-
-                .submenu {
-                    padding-bottom: 10px;
-
-                    div {
-                        padding: 0;
-
-                        a {
-                            color: $gray-600;
-                            text-decoration: none;
-                            font-size: 0.8rem;
-                            padding: 0 1rem 0.4rem;
-                            display: block;
-
-                            @include media-breakpoint-up(sm) {
-                                padding: 0 3rem 1rem;
-                                font-size: 1rem;
-                            }
-
-                            &:hover {
-                                color: $gray-400;
-                            }
-
-                            &.active {
-                                color: $primary;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
+div.sap-embed-player {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25% !important; /* The height of the item will now be 56.25% of the width. */
+}
+div.sap-embed-player > iframe {
+    position: absolute;
+    width: 100%;
+    height: 100% !important;
+    left: 0;
+    top: 0;
 }
 
 /* -------------------------------------------------------------------------- */
 
-/*	FOOTER
-/* -------------------------------------------------------------------------- */
-#footer {
-    .container {
-        .row {
-            // padding-top: 3rem;
-            // padding-bottom: 3rem;
+// Hide Recaptcha
+.grecaptcha-badge {
+    visibility: hidden;
+}
+.et-db #et-boc .et-l section.et_pb_wpt_gravityform_0 div.gform_wrapper form .hide_recaptcha {
+    margin: 0 !important;
+    padding: 0 !important;
 
-            .stamp {
-                @include media-breakpoint-down(xs) {
-                    margin-bottom: 1rem;
-                }
+    .ginput_recaptcha {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+}
 
-                img {
-                    width: 50px;
-                    margin-right: 1rem;
-                    height: auto;
+// FORMS
+.et-db #et-boc .et-l .et_pb_module input.text:not(.qty),
+.et-db #et-boc .et-l .et_pb_module input.title,
+.et-db #et-boc .et-l .et_pb_module input[type="email"],
+.et-db #et-boc .et-l .et_pb_module input[type="password"],
+.et-db #et-boc .et-l .et_pb_module input[type="tel"],
+.et-db #et-boc .et-l .et_pb_module input[type="text"],
+.et-db #et-boc .et-l .et_pb_module input[type="number"],
+.et-db #et-boc .et-l .et_pb_module input[type="url"],
+.et-db #et-boc .et-l .et_pb_module select,
+.et-db #et-boc .et-l .et_pb_module textarea {
+    width: 100% !important;
 
-                    @include media-breakpoint-down(xs) {
-                        margin-right: 0;
-                    }
-                }
-
-                .tagline {
-                    line-height: 1;
-
-                    @include media-breakpoint-down(xs) {
-                        display: block;
-                    }
-                }
-            }
+    &:focus {
+        border-color: $primary !important;
+    }
+}
+.gform_wrapper {
+    &.gravity-theme {
+        .ginput_complex {
+            gap: 1%;
         }
     }
+}
+.et-db #et-boc .et-l .et_pb_module .gf_name_has_2 {
+    input {
+        margin-bottom: 0.5em;
+    }
+}
+// .et-db #et-boc .et-l .et_pb_module textarea {
+// 	border: 1px solid #bbb;
+// }
+.gform_wrapper.gravity-theme .ginput_container_address span {
+    //flex: auto !important;
+    margin-bottom: 20px !important;
+}
+
+.et_pb_wpt_gravityform .gform_wrapper .ginput_container_address .ginput_left {
+    flex: 0 0 49%;
+}
+.et_pb_wpt_gravityform .gform_wrapper .ginput_container_address .ginput_right {
+    flex: 0 0 50%;
+}
+
+.gf_clear {
+    display: none;
+}
+// .et-db #et-boc .et-l section.et_pb_wpt_gravityform_0 .gform_wrapper .gfield select,
+// .et-db #et-boc .et-l section.et_pb_wpt_gravityform_0 .gform_wrapper .gfield select {
+// 	border-color: #bbb;
+// }
+.et-db #et-boc .et-l section.et_pb_wpt_gravityform_0 form .gform_page_footer,
+.et-db #et-boc .et-l section.et_pb_wpt_gravityform_0 form .gform_footer {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+.et-db #et-boc .et-l section.et_pb_wpt_gravityform_0 .gform_wrapper .gform_fields .gfield div.ginput_container_consent,
+.et-db #et-boc .et-l section.et_pb_wpt_gravityform_0 .gform_wrapper .gform_fields .gfield div.gchoice {
+    // input {
+    // 	width: 20px;
+    // 	height: 20px;
+    // }
+
+    label {
+        display: inline;
+    }
+}
+.et-db #et-boc .et-l section.et_pb_wpt_gravityform_0 .et_pb_button {
+    width: 100%;
+    text-align: center;
+}
+.gform_wrapper.gravity-theme .ginput_container_date {
+    flex-grow: 1;
+}
+.et-db #et-boc .et-l section.et_pb_wpt_gravityform_0 div.gform_wrapper form div.ginput_container.ginput_container_date {
+    margin-right: 0 !important;
+    max-width: none;
+}
+
+.gform_wrapper.gravity-theme input:not([type="radio"]):not([type="checkbox"]):not([type="image"]):not([type="file"]) {
+    line-height: 1 !important;
+}
+.et-db #et-boc .et-l section.et_pb_wpt_gravityform_0 .gform_wrapper .gform_fields .gfield select {
+    line-height: 1;
+    padding-top: 14px !important;
+}
+
+// DIVI columns
+// prevents columns from breaking in mobile view
+@media only screen and (max-width: 980px) {
+    .et-db #et-boc .et-l {
+        .two-columns .et_pb_column {
+            width: 50% !important;
+        }
+
+        .three-columns .et_pb_column {
+            width: 33.33% !important;
+        }
+
+        .four-columns .et_pb_column {
+            width: 25% !important;
+            margin: 0 !important;
+        }
+        .five-columns .et_pb_column {
+            width: 20% !important;
+        }
+    }
+}
+
+// Gravity forms
+.gform_ajax_spinner {
+    position: fixed;
+    background: #ffffffc7 !important;
+    padding: 20% 45% !important;
+    display: block;
+    width: 100vw !important;
+    height: 100vh !important;
+    top: 0 !important;
+    left: 0 !important;
+}
+
+/* Adds an underline to any text that is "emphasised through Divi text module WYSIWYG */
+.et_pb_text em {
+    background: repeat-x left 1em/1em 0.15em !important;
+    background-image: linear-gradient(90deg, #4f63ff, #4f63ff) !important;
+    font-style: unset;
+}
+
+/* Corrects Divi bug of adding a width of 80% to ROWS whenever you add a Background color or image to the parent SECTION */
+.et-db #et-boc .et-l .et_pb_with_background .et_pb_row {
+    width: unset;
+}
+
+/* Hide gform_required_legend */
+.gform_required_legend {
+    display: none;
 }

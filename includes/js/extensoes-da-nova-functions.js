@@ -1,23 +1,18 @@
 jQuery(document).ready(function ($) {
 
-	// console.log('js loaded');
-	// $('body').css('background-color', '#f30');
+	console.log('Extensões da Nova js loaded');
 
 
-	// Fullscreen Menu http://www.hongkiat.com/blog/jquery-sliding-navigation/
-	$(".hamburger").on("click", function (e) {
-		e.preventDefault();
-		$(".hamburger").toggleClass("is-active");
-		$('#fullscreenmenu').toggleClass("is-active");
-	});
+	// Autoplays any video with the css class .lwp-video-autoplay
+	if ($('.lwp-video-autoplay .et_pb_video_box').length !== 0) {
+		$('.lwp-video-autoplay .et_pb_video_box').find('video').prop('muted', true);
+		$(".lwp-video-autoplay .et_pb_video_box").find('video').attr('loop', 'loop');
+		$(".lwp-video-autoplay .et_pb_video_box").find('video').attr('playsInline', '');
 
-	// Open and Close Fullscreen Menu by pressing esc
-	$('body').keydown(function (e) {
-		if (e.which == 27) {
-			$(".hamburger").toggleClass("is-active");
-			$('#fullscreenmenu').toggleClass("is-active");
-		}
-	});
-
+		$(".lwp-video-autoplay .et_pb_video_box").each(function () {
+			$(this).find('video').get(0).play();
+		});
+		$('.lwp-video-autoplay .et_pb_video_box').find('video').removeAttr('controls');
+	}
 
 });

@@ -13,20 +13,6 @@ function extensoes_da_nova_js()
 		'1.1',
 		true
 	);
-
-	wp_register_script(
-		'fontawesome',
-		'https://kit.fontawesome.com/edc432ff9b.js',
-		array(),
-		null
-	);
-
-	wp_register_script(
-		'bootstrap',
-		'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.1/js/bootstrap.min.js',
-		array('jquery'),
-		true
-	);
 }
 
 
@@ -37,7 +23,7 @@ function extensoes_da_nova_js()
 function extensoes_da_nova_css()
 {
 	wp_register_style(
-		'extensoesdanova-syles',
+		'extensoesdanova-css',
 		plugin_dir_url(__FILE__) . 'scss/dist/extensoes-da-nova-syles-min.css',
 		null,
 		'1.1'
