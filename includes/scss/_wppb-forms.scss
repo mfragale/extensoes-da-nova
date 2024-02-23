@@ -102,6 +102,19 @@
 	padding: 10px;
 	display: block;
 }
+.doenanova_wppb_login_password {
+	position: relative;
+}
+.doenanova_wppb_login_password_input {
+	padding-right: 35px;
+}
+.doenanova_wppb_login_password_wppb-toggle-pw {
+	background: transparent;
+	border: none;
+	position: absolute;
+	top: 35px !important;
+	right: 4px;
+}
 
 //LOGIN FORM
 .et-db #et-boc .et-l .et_pb_text {
@@ -125,18 +138,14 @@
 		}
 
 		p.login-password {
-			position: relative;
+			@extend .doenanova_wppb_login_password;
 
 			input {
-				padding-right: 35px;
+				@extend .doenanova_wppb_login_password_input;
 			}
 
 			button.wppb-toggle-pw {
-				background: transparent;
-				border: none;
-				position: absolute;
-				bottom: 22px;
-				right: 4px;
+				@extend .doenanova_wppb_login_password_wppb-toggle-pw;
 			}
 		}
 
@@ -201,6 +210,30 @@
 					@extend .doenanova_wppb_input;
 				}
 
+				&.wppb-default-password {
+					@extend .doenanova_wppb_login_password;
+
+					input {
+						@extend .doenanova_wppb_login_password_input;
+					}
+
+					button.wppb-toggle-pw {
+						@extend .doenanova_wppb_login_password_wppb-toggle-pw;
+					}
+				}
+
+				&.wppb-default-repeat-password {
+					@extend .doenanova_wppb_login_password;
+
+					input {
+						@extend .doenanova_wppb_login_password_input;
+					}
+
+					button.wppb-toggle-pw {
+						@extend .doenanova_wppb_login_password_wppb-toggle-pw;
+					}
+				}
+
 				span.wppb-description-delimiter {
 					@extend .doenanova_wppb_description-delimiter;
 				}
@@ -235,9 +268,33 @@
 }
 
 //EDIT PROFILE FORM
-#wppb-forms_style_default-wrapper {
+#wppb-edit-user {
 	.wppb-form-title {
 		@extend .doenanova_wppb-form-title;
+	}
+
+	.wppb-default-password {
+		@extend .doenanova_wppb_login_password;
+
+		input {
+			@extend .doenanova_wppb_login_password_input;
+		}
+
+		button.wppb-toggle-pw {
+			@extend .doenanova_wppb_login_password_wppb-toggle-pw;
+		}
+	}
+
+	.wppb-default-repeat-password {
+		@extend .doenanova_wppb_login_password;
+
+		input {
+			@extend .doenanova_wppb_login_password_input;
+		}
+
+		button.wppb-toggle-pw {
+			@extend .doenanova_wppb_login_password_wppb-toggle-pw;
+		}
 	}
 }
 form#select_user_to_edit_form {
